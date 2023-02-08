@@ -5,7 +5,6 @@ const { default: styled } = require('styled-components');
 
 const StyledHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
