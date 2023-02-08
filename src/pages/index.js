@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
 import { POSTS } from '@/constants';
-import MainMenu from '@/molecules/MainMenu';
-import AutocompleteInput from '@/molecules/AutocompleteInput';
-import Button from '@/atoms/Button';
 import ImageHero from '@/atoms/Hero';
 import Header from '@/organisms/Header';
+import { ThemeProvider } from 'styled-components';
 
 const theme = {
   colors: {
