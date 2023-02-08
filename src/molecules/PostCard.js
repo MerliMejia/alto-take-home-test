@@ -18,9 +18,9 @@ const Image = styled.img`
   margin-bottom: 1rem;
 `;
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, ...props }) => {
   return (
-    <Card>
+    <Card {...props}>
       <Image src={post.image} alt="Post image" />
       <Text.Subtitle>{post.title}</Text.Subtitle>
       <Text>{post.content}</Text>
