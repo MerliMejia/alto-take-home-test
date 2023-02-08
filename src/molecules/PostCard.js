@@ -1,6 +1,7 @@
 import React from 'react';
 import Text from '@/atoms/Text';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Card = styled.div`
   display: flex;
@@ -21,9 +22,11 @@ const Image = styled.img`
 const PostCard = ({ post, ...props }) => {
   return (
     <Card {...props}>
-      <Image src={post.image} alt="Post image" />
-      <Text.Subtitle>{post.title}</Text.Subtitle>
-      <Text>{post.content}</Text>
+      <Link style={{ textDecoration: 'none' }} href={`/Post/${post.id}`}>
+        <Image src={post.image} alt="Post image" />
+        <Text.Subtitle>{post.title}</Text.Subtitle>
+        <Text>{post.content}</Text>
+      </Link>
     </Card>
   );
 };

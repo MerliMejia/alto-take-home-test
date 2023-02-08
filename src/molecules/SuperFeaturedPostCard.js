@@ -1,6 +1,7 @@
 import React from 'react';
 import Text from '@/atoms/Text';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Card = styled.div`
   align-items: center;
@@ -36,13 +37,15 @@ const Overlay = styled.div`
 const SuperFeaturedPostCard = ({ post }) => {
   return (
     <Card>
-      <Image src={post.image} alt="Post Image" />
-      <Overlay>
-        <Text.Subtitle color="white">{post.title}</Text.Subtitle>
-        <Text color="white" style={{ textAlign: 'center' }}>
-          {post.content}
-        </Text>
-      </Overlay>
+      <Link href={`/Post/${post.id}`}>
+        <Image src={post.image} alt="Post Image" />
+        <Overlay>
+          <Text.Subtitle color="white">{post.title}</Text.Subtitle>
+          <Text color="white" style={{ textAlign: 'center' }}>
+            {post.content}
+          </Text>
+        </Overlay>
+      </Link>
     </Card>
   );
 };

@@ -38,13 +38,7 @@ const SuperPostsColumn = styled.div`
 `;
 
 export default function Home({ posts }) {
-  const {
-    data,
-    featuredPosts,
-    superFeatured,
-    nonFeaturedPosts,
-    handleOnSearchChange
-  } = usePosts(posts);
+  const { featuredPosts, superFeatured, nonFeaturedPosts } = usePosts(posts);
 
   return (
     <ThemeProvider theme={theme}>

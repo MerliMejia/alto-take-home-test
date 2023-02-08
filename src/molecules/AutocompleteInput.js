@@ -1,5 +1,6 @@
 import Input from '@/atoms/Input';
 import Text from '@/atoms/Text';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -58,9 +59,15 @@ const AutocompleteInput = ({ data, onChange, ...props }) => {
       {filteredData.length > 0 && (
         <AutocompleteList>
           {filteredData.map((item, index) => (
-            <AutocompleteItem key={index} onClick={() => handleSelect(item)}>
-              <Text>{item.title}</Text>
-            </AutocompleteItem>
+            <Link
+              style={{ textDecoration: 'none' }}
+              key={index}
+              href={`/Post/${item.id}`}
+            >
+              <AutocompleteItem onClick={() => handleSelect(item)}>
+                <Text>{item.title}</Text>
+              </AutocompleteItem>
+            </Link>
           ))}
         </AutocompleteList>
       )}
