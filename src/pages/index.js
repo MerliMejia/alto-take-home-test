@@ -1,13 +1,11 @@
-import Button from '@/atoms/Button';
-import ImageHero from '@/atoms/Hero';
-import Input from '@/atoms/Input';
-import Logo from '@/atoms/Logo';
-import Text from '@/atoms/Text';
+import { useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { POSTS } from '@/constants';
 import MainMenu from '@/molecules/MainMenu';
 import AutocompleteInput from '@/molecules/AutocompleteInput';
-import { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { POSTS } from '@/constants';
+import Button from '@/atoms/Button';
+import ImageHero from '@/atoms/Hero';
+import Header from '@/organisms/Header';
 
 const theme = {
   colors: {
@@ -20,21 +18,13 @@ const theme = {
 export default function Home({ posts }) {
   console.log(posts);
   const [data, setData] = useState(posts);
-  const handleOnSelect = (value) => {
+  const handleOnSearchChange = (value) => {
     console.log(value);
   };
   return (
     <ThemeProvider theme={theme}>
-      <Button>Test</Button>
-      <Text>Normal text</Text>
-      <Text.Subtitle>Subtitle</Text.Subtitle>
-      <Input />
-      <Logo />
-      <MainMenu />
+      <Header data={data} handleOnChange={handleOnSearchChange} />
       <ImageHero />
-      <AutocompleteInput data={data} onSelect={handleOnSelect}>
-        Auto complete?
-      </AutocompleteInput>
     </ThemeProvider>
   );
 }

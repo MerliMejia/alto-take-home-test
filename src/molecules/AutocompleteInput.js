@@ -1,6 +1,6 @@
 import Input from '@/atoms/Input';
 import Text from '@/atoms/Text';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const AutocompleteContainer = styled.div`
@@ -28,7 +28,7 @@ const AutocompleteItem = styled.li`
   }
 `;
 
-const AutocompleteInput = ({ data, onSelect }) => {
+const AutocompleteInput = ({ data, onChange, ...props }) => {
   const [inputValue, setInputValue] = useState('');
   const [filteredData, setFilteredData] = useState([]);
 
@@ -44,12 +44,19 @@ const AutocompleteInput = ({ data, onSelect }) => {
   const handleSelect = (item) => {
     setInputValue(item.title);
     setFilteredData([]);
-    onSelect(item);
   };
 
+  useEffect(() => {
+    onChange(inputValue);
+  }, [inputValue, onChange]);
+
   return (
-    <AutocompleteContainer>
-      <Input value={inputValue} onChange={handleInputChange} />
+    <AutocompleteContainer {...props}>
+      <Input
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={() => inputValue.length === 0 && setFilteredData([])}
+      />
       {filteredData.length > 0 && (
         <AutocompleteList>
           {filteredData.map((item, index) => (
