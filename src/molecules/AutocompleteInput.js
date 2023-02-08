@@ -44,11 +44,8 @@ const AutocompleteInput = ({ data, onChange, ...props }) => {
   const handleSelect = (item) => {
     setInputValue(item.title);
     setFilteredData([]);
+    onChange(item);
   };
-
-  useEffect(() => {
-    onChange(inputValue);
-  }, [inputValue, onChange]);
 
   return (
     <AutocompleteContainer {...props}>
@@ -56,6 +53,7 @@ const AutocompleteInput = ({ data, onChange, ...props }) => {
         value={inputValue}
         onChange={handleInputChange}
         onBlur={() => inputValue.length === 0 && setFilteredData([])}
+        placeholder="Search..."
       />
       {filteredData.length > 0 && (
         <AutocompleteList>

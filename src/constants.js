@@ -1,7 +1,7 @@
 export const POSTS = [
   {
     id: 1,
-    title: 'Post 1',
+    title: 'The number One Post',
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a",
     featured: true,
@@ -10,7 +10,7 @@ export const POSTS = [
   },
   {
     id: 2,
-    title: 'Post 2',
+    title: 'Another Post',
     content:
       'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was pop',
     featured: false,
@@ -19,7 +19,7 @@ export const POSTS = [
   },
   {
     id: 3,
-    title: 'Post 3',
+    title: 'Yeap, another one',
     content:
       'n the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ',
     featured: false,
@@ -28,7 +28,7 @@ export const POSTS = [
   },
   {
     id: 4,
-    title: 'Post 4',
+    title: 'This is the fourth post',
     content:
       'desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     featured: false,
@@ -37,7 +37,7 @@ export const POSTS = [
   },
   {
     id: 5,
-    title: 'Post 5',
+    title: 'Just keep going, post 5',
     content:
       'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical ',
     featured: true,
@@ -55,7 +55,7 @@ export const POSTS = [
   },
   {
     id: 7,
-    title: 'Post 7',
+    title: 'Most exciting post 7',
     content:
       'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a',
     featured: true,

@@ -1,4 +1,3 @@
-import { useMemo, useState } from 'react';
 import { POSTS } from '@/constants';
 import ImageHero from '@/atoms/Hero';
 import Header from '@/organisms/Header';
@@ -6,8 +5,10 @@ import styled, { ThemeProvider } from 'styled-components';
 import NonFeaturedPosts from '@/molecules/NonFeaturedPosts';
 import SuperFeaturedPostCard from '@/molecules/SuperFeaturedPostCard';
 import PostCard from '@/molecules/PostCard';
+import usePosts from '@/hooks/use-posts';
+import MainLayout from '@/layouts/MainLayout';
 
-const theme = {
+export const theme = {
   colors: {
     primary: 'blue',
     primaryDark: 'darkblue',
@@ -20,8 +21,6 @@ const SuperPostsContainer = styled.div`
   align-items: stretch;
   justify-content: center;
   margin-top: 2rem;
-  /* when it is on mobile, wrap*/
-
   @media (max-width: 1493px) {
     flex-direction: column;
   }
@@ -39,57 +38,42 @@ const SuperPostsColumn = styled.div`
 `;
 
 export default function Home({ posts }) {
-  console.log(posts);
-  const [data, setData] = useState(posts);
+  const {
+    data,
+    featuredPosts,
+    superFeatured,
+    nonFeaturedPosts,
+    handleOnSearchChange
+  } = usePosts(posts);
 
-  const [featuredPosts, superFeatured, nonFeaturedPosts] = useMemo(
-    () =>
-      posts.reduce(
-        (acc, post) => {
-          if (post.featured && !post.superFeatured) {
-            acc[0].push(post);
-          } else if (post.superFeatured) {
-            acc[1].push(post);
-          } else {
-            acc[2].push(post);
-          }
-          return acc;
-        },
-        [[], [], []]
-      ),
-    [posts]
-  );
-
-  const handleOnSearchChange = (value) => {
-    console.log(value);
-  };
   return (
     <ThemeProvider theme={theme}>
-      <Header data={data} handleOnChange={handleOnSearchChange} />
-      <ImageHero />
-      <NonFeaturedPosts
-        style={{ marginTop: '2rem' }}
-        posts={nonFeaturedPosts}
-      />
-      <SuperPostsContainer>
-        <SuperPostsColumn style={{ width: '100%', height: '100%' }}>
-          {superFeatured.map((post) => (
-            <SuperFeaturedPostCard key={post.id} post={post} />
-          ))}
-        </SuperPostsColumn>
-        <SuperPostsColumn>
-          {featuredPosts.map((post) => (
-            <PostCard
-              style={{
-                width: '100%',
-                height: 'auto'
-              }}
-              key={post.id}
-              post={post}
-            />
-          ))}
-        </SuperPostsColumn>
-      </SuperPostsContainer>
+      <MainLayout posts={posts}>
+        <ImageHero />
+        <NonFeaturedPosts
+          style={{ marginTop: '2rem' }}
+          posts={nonFeaturedPosts}
+        />
+        <SuperPostsContainer>
+          <SuperPostsColumn style={{ width: '100%', height: '100%' }}>
+            {superFeatured.map((post) => (
+              <SuperFeaturedPostCard key={post.id} post={post} />
+            ))}
+          </SuperPostsColumn>
+          <SuperPostsColumn>
+            {featuredPosts.map((post) => (
+              <PostCard
+                style={{
+                  width: '100%',
+                  height: 'auto'
+                }}
+                key={post.id}
+                post={post}
+              />
+            ))}
+          </SuperPostsColumn>
+        </SuperPostsContainer>
+      </MainLayout>
     </ThemeProvider>
   );
 }

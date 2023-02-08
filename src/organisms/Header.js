@@ -24,7 +24,6 @@ const Header = ({ data, handleOnChange }) => (
         onChange={handleOnChange}
         style={{ marginRight: '1rem' }}
       />
-      <Button>BUSCAR</Button>
     </StyledSearchSection>
   </StyledHeader>
 );

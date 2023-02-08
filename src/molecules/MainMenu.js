@@ -11,7 +11,6 @@ const Nav = styled.nav`
   align-items: center;
   padding: 1rem;
   justify-content: flex-start;
-
   @media (max-width: 767px) {
     display: none;
   }
@@ -29,7 +28,6 @@ const Ul = styled.ul`
 
 const MobileNav = styled.nav`
   display: none;
-
   @media (max-width: 767px) {
     display: block;
     order: 2;
