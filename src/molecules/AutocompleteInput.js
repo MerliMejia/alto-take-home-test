@@ -36,13 +36,13 @@ const AutocompleteInput = ({ data, onSelect }) => {
     const value = e.target.value;
     setInputValue(value);
     const filtered = data.filter((item) =>
-      item.toLowerCase().includes(value.toLowerCase())
+      item.title.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredData(filtered);
   };
 
   const handleSelect = (item) => {
-    setInputValue(item);
+    setInputValue(item.title);
     setFilteredData([]);
     onSelect(item);
   };
@@ -54,7 +54,7 @@ const AutocompleteInput = ({ data, onSelect }) => {
         <AutocompleteList>
           {filteredData.map((item, index) => (
             <AutocompleteItem key={index} onClick={() => handleSelect(item)}>
-              <Text>{item}</Text>
+              <Text>{item.title}</Text>
             </AutocompleteItem>
           ))}
         </AutocompleteList>

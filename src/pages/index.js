@@ -7,6 +7,7 @@ import MainMenu from '@/molecules/MainMenu';
 import AutocompleteInput from '@/molecules/AutocompleteInput';
 import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { POSTS } from '@/constants';
 
 const theme = {
   colors: {
@@ -16,15 +17,9 @@ const theme = {
   }
 };
 
-export default function Home() {
-  const [data, setData] = useState([
-    'Apple',
-    'Banana',
-    'Orange',
-    'Pineapple',
-    'Strawberry',
-    'Watermelon'
-  ]);
+export default function Home({ posts }) {
+  console.log(posts);
+  const [data, setData] = useState(posts);
   const handleOnSelect = (value) => {
     console.log(value);
   };
@@ -42,4 +37,12 @@ export default function Home() {
       </AutocompleteInput>
     </ThemeProvider>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      posts: POSTS
+    }
+  };
 }
