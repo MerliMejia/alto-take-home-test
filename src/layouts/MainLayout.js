@@ -4,10 +4,10 @@ import { theme } from '@/pages';
 import { ThemeProvider } from 'styled-components';
 
 export default function MainLayout({ posts, children }) {
-  const { data, handleOnSearchChange } = usePosts(posts);
+  const { data } = usePosts(posts);
   return (
     <ThemeProvider theme={theme}>
-      <Header data={data} handleOnChange={handleOnSearchChange} />
+      <Header data={data} />
       {children}
     </ThemeProvider>
   );

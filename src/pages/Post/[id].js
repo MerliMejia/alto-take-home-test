@@ -1,6 +1,7 @@
 import Text from '@/atoms/Text';
 import { POSTS } from '@/constants';
 import MainLayout from '@/layouts/MainLayout';
+import Link from 'next/link';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from '..';
 
@@ -32,6 +33,12 @@ export default function Post({ post, posts }) {
         <Image src={post.image} alt="Post Image" />
         <Text.Subtitle>{post.title}</Text.Subtitle>
         <Text>{post.content}</Text>
+        <Link
+          style={{ textDecoration: 'none', marginTop: '2rem' }}
+          href={`/Post/edit/${post.id}`}
+        >
+          <Text.Subtitle>Edit</Text.Subtitle>
+        </Link>
       </StyledContainer>
     </ThemeProvider>
   );
@@ -39,9 +46,7 @@ export default function Post({ post, posts }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  console.log(id);
   const post = POSTS().find((post) => post.id.toString() === id);
-  console.log(post);
   return {
     props: {
       post,

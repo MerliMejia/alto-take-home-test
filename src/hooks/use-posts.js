@@ -21,16 +21,11 @@ const usePosts = (posts) => {
     [posts]
   );
 
-  const handleOnSearchChange = (value) => {
-    console.log(value);
-  };
-
   return {
     data,
     featuredPosts,
     superFeatured,
-    nonFeaturedPosts,
-    handleOnSearchChange
+    nonFeaturedPosts
   };
 };
 
