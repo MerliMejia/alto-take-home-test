@@ -28,7 +28,7 @@ const SwitchesContainer = styled.div`
   margin-top: 1rem;
 `;
 
-const PostForm = ({ post, onSubmit }) => {
+const PostForm = ({ post, onSubmit, isLoading }) => {
   const [title, setTitle] = useState(post ? post.title : '');
   const [content, setContent] = useState(post ? post.content : '');
   const [image, setImage] = useState(post ? post.image : '');
@@ -96,8 +96,8 @@ const PostForm = ({ post, onSubmit }) => {
         />
         <Text>Super Featured</Text>
       </SwitchesContainer>
-      <Button onClick={handleSubmit} type="button">
-        Submit
+      <Button disabled={isLoading} onClick={handleSubmit} type="button">
+        {isLoading ? 'Loading...' : 'Submit'}
       </Button>
     </StyledForm>
   );

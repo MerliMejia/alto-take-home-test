@@ -1,66 +1,28 @@
-export const POSTS = [
-  {
-    id: 1,
-    title: 'The number One Post',
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a",
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 2,
-    title: 'Another Post',
-    content:
-      'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was pop',
-    featured: false,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 3,
-    title: 'Yeap, another one',
-    content:
-      'n the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with ',
-    featured: false,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 4,
-    title: 'This is the fourth post',
-    content:
-      'desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    featured: false,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 5,
-    title: 'Just keep going, post 5',
-    content:
-      'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical ',
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 6,
-    title: 'Post 6',
-    content:
-      'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a',
-    featured: true,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  },
-  {
-    id: 7,
-    title: 'Most exciting post 7',
-    content:
-      'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a',
-    featured: true,
-    superFeatured: true,
-    image:
-      'https://images.unsplash.com/photo-1521575107034-e0fa0b594529?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9zdHxlbnwwfHwwfHw%3D&w=1000&q=80'
-  }
-];
+import fs from 'fs';
+import path from 'path';
+
+export const POSTS = () => {
+  const posts = fs.readFileSync(path.resolve('./src/data.json'), 'utf8');
+  console.log('posts', posts);
+  return JSON.parse(posts);
+};
+
+export const ADD_POST = (post) => {
+  const posts = POSTS();
+  posts.push({ ...post, id: posts.length + 1 });
+  fs.writeFileSync(path.resolve('./src/data.json'), JSON.stringify(posts));
+};
+
+export const UPDATE_POST = (post) => {
+  const posts = POSTS();
+  const index = posts.findIndex((p) => p.id === post.id);
+  posts[index] = post;
+  fs.writeFileSync(path.resolve('./src/data.json'), JSON.stringify(posts));
+};
+
+export const DELETE_POST = (id) => {
+  const posts = POSTS();
+  const index = posts.findIndex((p) => p.id === id);
+  posts.splice(index, 1);
+  fs.writeFileSync(path.resolve('./src/data.json'), JSON.stringify(posts));
+};

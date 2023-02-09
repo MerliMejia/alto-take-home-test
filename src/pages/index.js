@@ -74,7 +74,7 @@ export default function Home({ posts }) {
 export async function getServerSideProps(context) {
   return {
     props: {
-      posts: POSTS
+      posts: POSTS()
     }
   };
 }

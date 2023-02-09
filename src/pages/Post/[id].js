@@ -40,12 +40,12 @@ export default function Post({ post, posts }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
-  const post = POSTS.find((post) => post.id.toString() === id);
+  const post = POSTS().find((post) => post.id.toString() === id);
   console.log(post);
   return {
     props: {
       post,
-      posts: POSTS
+      posts: POSTS()
     }
   };
 }
