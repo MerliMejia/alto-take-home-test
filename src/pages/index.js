@@ -1,6 +1,5 @@
 import { POSTS } from '@/constants';
 import ImageHero from '@/atoms/Hero';
-import Header from '@/organisms/Header';
 import styled, { ThemeProvider } from 'styled-components';
 import NonFeaturedPosts from '@/molecules/NonFeaturedPosts';
 import SuperFeaturedPostCard from '@/molecules/SuperFeaturedPostCard';
