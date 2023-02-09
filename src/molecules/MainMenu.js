@@ -69,13 +69,8 @@ const MainMenu = () => {
             </Text.Subtitle>
           </li>
           <li>
-            <Text.Subtitle as="a" href="/blog">
+            <Text.Subtitle as="a" href="/Post">
               Blog
-            </Text.Subtitle>
-          </li>
-          <li>
-            <Text.Subtitle as="a" href="/contact">
-              Contact
             </Text.Subtitle>
           </li>
         </Ul>
